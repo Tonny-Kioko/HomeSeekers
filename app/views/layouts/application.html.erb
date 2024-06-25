@@ -2,9 +2,10 @@
 <html>
   <head>
     <title>HomeSeekers | Holidays, Rentals, Cabins, Beach Houses & More</title>
-  <%= link_to root_path do %>
-    <%= image_tag("airbnblogo.svg", class: "h-8 w-auto", alt: "Airbnb Logo") %>
-  <% end %>
+    <%= link_to root_path do %>
+      <%= image_tag("airbnblogo.svg", class: "h-8 w-auto", alt: "Airbnb Logo") %>
+    <% end %>
+    
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -12,11 +13,17 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    
+
+    <script src="https://unpkg.com/stimulus@2.0.0/dist/stimulus.umd.min.js"></script>
+    <%= javascript_importmap_tags %>
+    
+
+  
   </head>
 
   <body>
       <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= render 'headers/header' %>
       <%= yield %>
     
