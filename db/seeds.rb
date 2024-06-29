@@ -8,36 +8,15 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-
-Property.create!({
-  name: 'Mombasa Beach Front',
-  headline: 'Beach Front',
-  description: 'A beach Front property in Mombasa',
-  address_1: 'Mombasa123',
-  address_2: 'Mombasa Area',
-  city: 'Mombasa City',
-  state: 'Mombasa Area',
-  country: 'Kenya',
-})
-
-Property.create!({
-  name: 'Mombasa Beach Front2',
-  headline: 'Beach Front2',
-  description: 'A beach Front property in Mombasa2',
-  address_1: 'Mombasa123456',
-  address_2: 'Mombasa Area2',
-  city: 'Mombasa City',
-  state: 'Mombasa Area',
-  country: 'Kenya',
-})
-
-Property.create!({
-  name: 'Mombasa Beach Front3',
-  headline: 'Beach Front3',
-  description: 'A beach Front property in Mombasa3',
-  address_1: 'Mombasa123789',
-  address_2: 'Mombasa Area3',
-  city: 'Mombasa City',
-  state: 'Mombasa Area',
-  country: 'Kenya',
-})
+20.times do 
+  Property.create!({
+    name: Faker::Lorem.unique.sentence(word_count: 3),
+    description: Faker::Lorem.paragraph(sentence_count: 10),
+    headline: Faker::Lorem.unique.sentence(word_count: 6),
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country    
+  })
+end
