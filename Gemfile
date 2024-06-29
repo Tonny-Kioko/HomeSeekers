@@ -72,3 +72,5 @@ gem 'devise', '~> 4.9', '>= 4.9.3'
 
 gem 'faker', '~> 3.4', '>= 3.4.1'
 
+gem 'money-rails', '~> 1.12'
+
