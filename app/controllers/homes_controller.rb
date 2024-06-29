@@ -1,13 +1,14 @@
 class HomesController < ApplicationController
-  before_action :set_home, only: %i[ show edit update destroy ]
+
 
   # GET /homes or /homes.json
   def index
-    @homes = Home.all
+    @properties = Property.all
   end
 
   # GET /homes/1 or /homes/1.json
   def show
+    
   end
 
   # GET /homes/new
