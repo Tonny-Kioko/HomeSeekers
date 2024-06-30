@@ -8,8 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-20.times do 
-  Property.create!({
+6.times do |i|
+  property =Property.create!({
     name: Faker::Lorem.unique.sentence(word_count: 3),
     description: Faker::Lorem.paragraph(sentence_count: 10),
     headline: Faker::Lorem.unique.sentence(word_count: 6),
@@ -20,4 +20,7 @@
     country: Faker::Address.country,
     price: Money.from_amount((50..1000).to_a.sample, 'USD'),
   })
+
+  property.images.attach(io: File.open("db/images/property_#{i + 1}.jpg"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_#{i + 7}.jpg"), filename: property.name)
 end

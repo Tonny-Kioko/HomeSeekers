@@ -74,3 +74,6 @@ gem 'faker', '~> 3.4', '>= 3.4.1'
 
 gem 'money-rails', '~> 1.12'
 
+gem "image_processing", ">= 1.2"
+
+
