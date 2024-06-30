@@ -8,5 +8,8 @@ class Property < ApplicationRecord
   validates :city, presence: true, length: { maximum: 50 }
   validates :state, presence: true, length: { maximum: 50 }
   validates :country, presence: true, length: { maximum: 50 }
+
   monetize :price_cents, allow_nil: true
+
+  has_many_attached :images
 end
