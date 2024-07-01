@@ -6,6 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
+.vscode
+.cspell
 
 # Ignore all logfiles and tempfiles.
 /log/*

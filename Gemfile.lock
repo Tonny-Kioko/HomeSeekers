@@ -286,6 +286,7 @@ DEPENDENCIES
   image_processing (>= 1.2)
   importmap-rails
   jbuilder
+  mini_magick
   money-rails (~> 1.12)
   pg (~> 1.1)
   puma (>= 5.0)
