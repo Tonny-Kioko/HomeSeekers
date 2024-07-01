@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  content: MyString
+  cleanliness_rating: 1
+  accuracy_rating: 1
+  checkin_rating: 1
+  communication_rating: 1
+  location_rating: 1
+  value_rating: 1
+  final_rating: 1
+  user: one
+  property: one
+
+two:
+  content: MyString
+  cleanliness_rating: 1
+  accuracy_rating: 1
+  checkin_rating: 1
+  communication_rating: 1
+  location_rating: 1
+  value_rating: 1
+  final_rating: 1
+  user: two
+  property: two
