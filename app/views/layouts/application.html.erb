@@ -8,12 +8,23 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <script src="https://unpkg.com/stimulus@2.0.0/dist/stimulus.umd.min.js"></script>
     <%= javascript_importmap_tags %>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    
+
+
   </head>
 
   <body>
     <%= link_to root_path do %>
       <%= image_tag("airbnblogo.svg", class: "h-8 w-auto", alt: "Airbnb Logo") %>
     <% end %>
+    
     
     <p class="notice"><%= notice %></p>
 
