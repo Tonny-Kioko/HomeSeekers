@@ -4,7 +4,8 @@
       <% if @properties.present? %>
         <% @properties.each do |property| %>
           <div class="group relative">
-            <div class=" swiper aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75">
+          <div class="relative overflow-hidden rounded-md bg-gray-200"> 
+            <div class="swiper">
               <div class="swiper-wrapper">
                 <% if property.images.present? %>
                   <% property.images.each do |image| %>
@@ -14,7 +15,30 @@
                   <img src="https://www.luxsphere.co/wp-content/uploads/most-expnsive-airbnb-in-the-world-Villa-Victoria-4-.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                 <% end %>
               </div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+
             </div>
+            <div class="absolute z-10 right-0 top-0 m-4">
+              <svg xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 32 32" 
+                aria-hidden="true" 
+                role="presentation" 
+                focusable="false"
+                class="block h-6 w-6 stroke-black stroke-2 fill-none"
+                style="overflow: visible;"
+                data-controller="wishlist"
+                data-user-logged-in="<%= user_signed_in? %>"
+                data-action="click->wishlist#updateWishlistStatus"
+                data-status="false"
+                >
+                  <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05a6.98 6.98 0 0 0-9.9 0A6.98 6.98 0 0 0 2 11c0 7 7 12.27 14 17z"></path>
+              </svg>
+
+            </div>
+
+          </div>
+            
             <div class="mt-2">
               <div class="flex justify-between">
                 <h3 class="text-base font-medium text-gray-700">
@@ -39,7 +63,9 @@
               </div>
               <p class="mt-0.5 text-sm text-gray-500">Hosted by <span class="font-medium">Matt</span></p>
               <p class="mt-0.5 text-sm text-gray-500">20-25 October</p>
-              <p class="mt-0.5 text-sm font-light text-black"><span class="font-medium">$110</span> night</p>
+              <p class="mt-0.5 text-sm font-light text-black">
+                <span class="font-medium"><%= humanized_money_with_symbol(property.price) %></span> night
+              </p>
             </div>
           </div>
         <% end %>
