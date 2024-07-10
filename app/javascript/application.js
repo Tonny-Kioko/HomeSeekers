@@ -4,3 +4,4 @@
 
 import "controllers";
 import "@hotwired/turbo-rails";
+import "el-transition";

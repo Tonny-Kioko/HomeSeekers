@@ -8,5 +8,5 @@
 //= link controllers/header_controller.js
 //= link controllers/index.js
 
-
+//= link controllers/wishlist_controller.js
 
