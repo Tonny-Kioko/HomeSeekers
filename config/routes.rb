@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :homes
 
   root to: "homes#index" 
+
+  namespace :api do
+    resources :wishlist, only: [:create, :destroy] 
+  end
   
   get "up" => "rails/health#show", as: :rails_health_check
 
