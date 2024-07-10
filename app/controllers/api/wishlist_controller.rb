@@ -2,7 +2,7 @@ module Api
   class WishlistController < ApplicationController
     protect_from_forgery with: :null_session
     # The wishlist tabble only ahs userId and PropertyId, abd the only operatons we need is create and delete    
-    def create      
+    def create 
       wishlist = Wishlist.create!(wishlist_params)
 
       respond_to do |format|
