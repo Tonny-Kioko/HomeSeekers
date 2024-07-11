@@ -4,13 +4,13 @@
       <% if @properties.present? %>
         <% @properties.each do |property| %>
           <div class="group relative">
-          <div class="relative overflow-hidden rounded-md bg-gray-200"> 
+          <div class="relative overflow-hidden rounded-md bg-gray-200">
             <div class="swiper">
               <div class="swiper-wrapper">
                 <% if property.images.present? %>
                   <% property.images.each do |image| %>
                     <%= image_tag image, class: "swiper-slide h-full w-full object-cover object-center lg:h-full lg:w-full" %>
-                  <% end %>  
+                  <% end %>
                 <% else %>
                   <img src="https://www.luxsphere.co/wp-content/uploads/most-expnsive-airbnb-in-the-world-Villa-Victoria-4-.jpg" alt="Front of men&#039;s Basic Tee in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full">
                 <% end %>
@@ -20,10 +20,10 @@
 
             </div>
             <div class="absolute z-10 right-0 top-0 m-4">
-              <svg xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 32 32" 
-                aria-hidden="true" 
-                role="presentation" 
+              <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 32 32"
+                aria-hidden="true"
+                role="presentation"
                 focusable="false"
                 class="block h-6 w-6 stroke-black stroke-2 <%= property.wishlisted_by?(current_user) %> ? 'fill-primary' : 'fiil-none' "
                 style="overflow: visible;"
@@ -41,7 +41,7 @@
             </div>
 
           </div>
-            
+
             <div class="mt-2">
               <div class="flex justify-between">
                 <h3 class="text-base font-medium text-gray-700">
@@ -53,19 +53,24 @@
                 <p class="flex items-center text-sm font-light">
                   <svg
                     class="mr-1 block w-3 h-3 fill-current"
-                    xmlns="http://www.w3.org/2000/svg" 
-                    viewBox="0 0 32 32" 
-                    aria-hidden="true" 
-                    role="presentation" 
-                    focusable="false" 
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 32 32"
+                    aria-hidden="true"
+                    role="presentation"
+                    focusable="false"
                   >
                     <path fill-rule="evenodd" d="m15.1 1.58-4.13 8.88-9.86 1.27a1 1 0 0 0-.54 1.74l7.3 6.57-1.97 9.85a1 1 0 0 0 1.48 1.06l8.62-5 8.63 5a1 1 0 0 0 1.48-1.06l-1.97-9.85 7.3-6.57a1 1 0 0 0-.55-1.73l-9.86-1.28-4.12-8.88a1 1 0 0 0-1.82 0z"></path>
                   </svg>
                   <%= property.average_final_rating.round(2)%>
                 </p>
               </div>
+              <%
+=begin%>
+  To toUsers location distance based on their distance to the propperty
+<%
+=end%>
               <p class="mt-0.5 text-sm text-gray-500">Hosted by <span class="font-medium">Matt</span></p>
-              <p class="mt-0.5 text-sm text-gray-500">20-25 October</p>
+              <p class="mt-0.5 text-sm text-gray-500"><%= property.available_dates.first%> - <%= property.available_dates.last%></p>
               <p class="mt-0.5 text-sm font-light text-black">
                 <span class="font-medium"><%= humanized_money_with_symbol(property.price) %></span> night
               </p>
