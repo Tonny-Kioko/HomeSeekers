@@ -6,5 +6,7 @@
       "addWords": true,
       "scope": "workspace"
     }
-  }
+  },
+  "editor.formatOnPaste": true,
+  "files.trimTrailingWhitespace": true
 }
