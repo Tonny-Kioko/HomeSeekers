@@ -24,6 +24,10 @@ user = User.create!({
     state: Faker::Address.state,
     country: Faker::Address.country,
     price: Money.from_amount((50..1000).to_a.sample, 'USD'),
+    bedroom_count: (2..5).to_a.sample,
+    bed_count: (1..5).to_a.sample,
+    guest_count: (1..10).to_a.sample,
+    bathroom_count: (1..5).to_a.sample
   })
 
   property.images.attach(io: File.open("db/images/property_#{i + 1}.jpg"), filename: property.name)

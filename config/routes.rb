@@ -1,16 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :users  
+  devise_for :users
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :homes
 
-  root to: "homes#index" 
+  root to: "homes#index"
 
   namespace :api do
-    resources :wishlist, only: [:create, :destroy] 
+    resources :wishlist, only: [:create, :destroy]
   end
-  
+
+  resources :properties, only: [:show]
+
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
