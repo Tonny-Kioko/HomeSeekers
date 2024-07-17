@@ -283,7 +283,7 @@ DEPENDENCIES
   debug
   devise (~> 4.9, >= 4.9.3)
   faker (~> 3.4, >= 3.4.1)
-  image_processing (>= 1.2)
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   mini_magick
