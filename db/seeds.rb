@@ -8,10 +8,40 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+pictures = []
+20.times do
+  pictures << URI.parse(Faker::LoremFlickr.image).open
+end
+
 user = User.create!({
-  email: 'matt@gmail.com',
-  password: 'Matt@123'
+    email: "matt@gmail.com",
+    password: 'Matt@123',
+    name: Faker::Lorem.unique.sentence(word_count: 3),
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country
+
 })
+user.picture.attach(io: pictures[0], filename: user.name)
+
+19.times do |y|
+  random_user = User.create!({
+    email: "matt#{y+2}@gmail.com",
+    password: 'Matt@123',
+    name: Faker::Lorem.unique.sentence(word_count: 3),
+    address_1: Faker::Address.street_address,
+    address_2: Faker::Address.street_name,
+    city: Faker::Address.city,
+    state: Faker::Address.state,
+    country: Faker::Address.country
+  })
+
+  random_user.picture.attach(io: pictures[y+1], filename: user.name)
+end
+
+
 
 6.times do |i|
   property = Property.create!({
@@ -33,7 +63,6 @@ user = User.create!({
   property.images.attach(io: File.open("db/images/property_#{i + 1}.jpg"), filename: property.name)
   property.images.attach(io: File.open("db/images/property_#{i + 7}.jpg"), filename: property.name)
 
-
   ((5..10).to_a.sample).times do
     Review.create!({
       content: Faker::Lorem.paragraph(sentence_count: 10),
@@ -44,8 +73,7 @@ user = User.create!({
       location_rating: (1..5).to_a.sample,
       value_rating: (1..5).to_a.sample,
       property: property,
-      user: user
+      user: User.all.sample
     })
-
   end
 end

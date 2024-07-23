@@ -48,7 +48,7 @@
                         <div aria-hidden="true" class="ml-1 flex flex-1 items-center">
                           <div class="relative ml-1 flex-1">
                             <div class="h-1 rounded-full border border-gray-200 bg-gray-200"></div>
-                            <div style="width: <%= (@overall_rating_counts[(5-index)] || 0) * 100 / property.reviews_count %>%" class="absolute inset-y-0 rounded-full border border-black bg-black"></div>
+                            <div style="width: <%= (@overall_rating_counts[(5-index)]) * 100 / property.reviews_count %>%" class="absolute inset-y-0 rounded-full border border-black bg-black"></div>
                           </div>
                         </div>
                       </dt>
@@ -154,9 +154,50 @@
       <% end %>
     <% end %>
   </section>
+  <section aria-labelledby="reviews-items" class="border-t border-gray-200 pt-10 lg:pt-16">
+    <div class="space-y-10">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-16 space-y-8 lg:space-y-0">
+        <% property.reviews.limit(6).each do |review| %>
+          <div class="flex flex-col">
+            <div class="flex items-center">
+              <%= image_tag review.user.picture, alt: review.user.name, class: "h-12 w-12 rounded-full" %>
+              <div>
+                <p class="text-sm font-medium text-gray-900 ms-4"><%= review.user.name%></p>
+                <p class="text-sm font-light text-gray-900 ms-4"><%= review.user.city%>, <%= review.user.country%> </p>
+              </div>
+            </div>
+            <div class="mt-2 flex items-center">
+              <% 5.times do |i| %>
+                <svg class="<%= review.final_rating.round(0) > (i) ? 'text-black' : 'text-gray-300'%> h-3 w-3 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+                </svg>
+              <% end %>
+            </div>
+            <div class="mt-6 sm:mt-0">
+              <p class="sr-only">5 out of 5 stars</p>
 
 
+              <div class="mt-3 space-y-6 text-base text-gray-600">
+                <p class="text-base text-gray-900 review-content" data-full-content="<%= review.content %>">
+                  <%= review.content.truncate(200) %>
+                </p>
+                <% if review.content.length > 200 %>
+                  <div class="flex items-center gap-1 show-more" data-expanded="false" style="cursor: pointer;">
+                    <span class="font-medium underline">Show more</span>
+                    <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 12px; width: 12px; display: block; fill: var(--f-k-smk-x);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
+                  </div>
+                <% end %>
+              </div>
 
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% if (property.reviews_count > 6) %>
+        <button type="button" class="rounded-md bg-white px-4 py-3 text-sm font-medium text-gray-900 text-lg ring-1 ring-inset ring-black hover:bg-gray-50">Show all reviews</button>
+      <% end %>
+    </div>
+  </section>
 </div>
 
 <!-- property.reviews.average(:cleanliness_rating).to_f-->
