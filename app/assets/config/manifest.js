@@ -10,3 +10,4 @@
 
 //= link controllers/wishlist_controller.js
 
+//= link controllers/showmore_controller.js
