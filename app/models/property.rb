@@ -23,6 +23,9 @@ class Property < ApplicationRecord
 
   has_rich_text :description
 
+  has_many :property_amenities, dependent: :destroy
+  has_many :amenities, through: :property_amenitis, source: :amenity, dependent: :destroy
+
   def update_average_rating
     average_rating = reviews.average(:final_rating);
     update_column(:average_final_rating, average_rating)
