@@ -150,12 +150,9 @@
           <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
 
           <div class="mt-4">
-            <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-gray-600"><%= @property.guest_count %> Guests fit comfortably</span></li>
-              <li class="text-gray-400"><span class="text-gray-600"> <%= @property.bedroom_count %> Spacious Bedrooms</span></li>
-              <li class="text-gray-400"><span class="text-gray-600"><%= @property.bed_count %> Kingsize and Queensize Beds</span></li>
-              <li class="text-gray-400"><span class="text-gray-600"><%= @property.bathroom_count %> Clean Bathrooms</span></li>
-            </ul>
+            <%= render partial: 'properties/amenities', locals: { property: @property, amenities: @amenities } %>
+
+            
           </div>
         </div>
       </div>

@@ -51,8 +51,7 @@ amenities_data = [
 ]
 
 amenities_data.each do |data|
-  amenity = Amenity.create!(name: data[:name], description: data[:description])
-  amenity.icon.attach(io: File.open("app/assets/images/amenity_icons/#{data[:icon]}"), filename: amenity.name)
+  amenity = Amenity.create!(name: data[:name], icon: data[:icon], description: data[:description])
 end
 
 pictures = []
@@ -105,12 +104,14 @@ end
     bathroom_count: (1..5).to_a.sample
   })
 
-  property.images.attach(io: File.open("db/images/property_#{i + 1}.jpg"), filename: property.name)
-  property.images.attach(io: File.open("db/images/property_#{i + 7}.jpg"), filename: property.name)
-
+  amenity_set = Set.new
   ((10..(amenities_data.length() - 1)).to_a.sample).times do
-  property.amenities << Amenity.all.sample
-end
+    amenity = Amenity.all.sample
+    unless amenity_set.include?(amenity.id)
+      property.amenities << amenity
+      amenity_set << amenity.id
+    end
+  end
 
   ((5..10).to_a.sample).times do
     Review.create!({
