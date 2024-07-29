@@ -133,13 +133,13 @@
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
         <!-- Description and details -->
         <div>
-          <h3 class="sr-only">Description</h3>
+          <h3 class="text-xl font-small leading-6 text-gray-600" >About This Place</h3>
 
           <div class="space-y-6 trix-content">
-            <p class="text-base text-gray-900"><%= @property.description.to_plain_text.truncate(50)%></p>
-            <% if @property.description.to_plain_text.length > 500 %>
+            <p class="text-base text-gray-900"><%= @property.description.to_plain_text.truncate(300)%></p>
+            <% if @property.description.to_plain_text.length > 200 %>
               <div class="flex items-center gap-1 show-more" data-expanded-description="false" style="cursor: pointer;">
-                <span class="font-medium underline">Show more</span>
+                <span data-controller="description" data-action="click->description#toggleDescriptionModal" class="font-medium underline">Show more</span>
                 <svg viewBox="0 0 18 18" role="presentation" aria-hidden="true" focusable="false" style="height: 12px; width: 12px; display: block; fill: var(--f-k-smk-x);"><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fill-rule="evenodd"></path></svg>
               </div>
             <% end %>
@@ -147,12 +147,10 @@
         </div>
 
         <div class="mt-10">
-          <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
-
           <div class="mt-4">
             <%= render partial: 'properties/amenities', locals: { property: @property, amenities: @amenities } %>
 
-            
+
           </div>
         </div>
       </div>
@@ -195,3 +193,5 @@
     </section>
   </main>
 </div>
+
+<%= render 'shared/modal', modalTriggerId: "share", content: 'properties/share_modal', content_params: { property: @property } %>
