@@ -10,4 +10,8 @@
 
 //= link controllers/wishlist_controller.js
 
-//= link controllers/showmore_controller.js
+//= link controllers/description_controller.js
+
+//= link controllers/modal_controller.js
+
+//= link controllers/reviews_controller.js

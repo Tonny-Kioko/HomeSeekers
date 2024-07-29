@@ -1,0 +1,24 @@
+<div>
+  <button data-action="click->modal#toggleModal" type="button" class="relative rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+    <span class="absolute -inset-2.5"></span>
+    <span class="sr-only">Close panel</span>
+    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  <div class="py-6">
+    <h2 class="text-xl font-medium leading-6 text-gray-900">What this place offers</h2>
+    <div class="mt-6 divider">
+      <% content_params[:amenities].limit(8).each do|amenity| %>
+        <div class="py-4 flex">
+
+          <%= image_tag "amenity_icons/#{amenity.icon}", class:"w-6 h-6" %>
+          <p class="ms-4 font-light"><%= amenity.name %></p>
+        </div>
+        <div class="inset-0 flex items-center py-1" aria-hidden="true">
+          <div class="w-full border-t border-gray-200"></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
