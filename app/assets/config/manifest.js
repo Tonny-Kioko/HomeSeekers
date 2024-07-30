@@ -15,3 +15,5 @@
 //= link controllers/modal_controller.js
 
 //= link controllers/reviews_controller.js
+
+ //= link controllers/booking_controller.js
