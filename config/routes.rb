@@ -11,7 +11,12 @@ Rails.application.routes.draw do
     resources :wishlist, only: [:create, :destroy]
   end
 
-  resources :properties, only: [:show]
+  resources :properties, only: [:show] do
+    resources :bookings, only: [:new]
+  end
+
+
+
 
   get "up" => "rails/health#show", as: :rails_health_check
 
