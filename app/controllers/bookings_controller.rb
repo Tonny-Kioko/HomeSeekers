@@ -13,9 +13,9 @@ class BookingsController < ApplicationController
   private
 
   def numberOfNights
-    checkin_date = Date.parse(params[:checkin_date])
-    checkout_date = Date.parse(params[:checkout_date])
-    (checkout_date - checkin_date).to_i
+    @checkin_date = Date.parse(params[:checkin_date])
+    @checkout_date = Date.parse(params[:checkout_date])
+    (@checkout_date - @checkin_date).to_i
   end
   def booking_params
     params.permit(:checkin_date, :checkout_date, :property_id)

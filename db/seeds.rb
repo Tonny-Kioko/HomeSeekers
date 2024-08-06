@@ -104,6 +104,14 @@ end
     bathroom_count: (1..5).to_a.sample
   })
 
+  property.images.attach(io: File.open("db/images/property_#{i + 1}.jpg"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_7.jpg"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_8.jpg"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_9.jpg"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_10.jpg"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_11.jpg"), filename: property.name)
+  property.images.attach(io: File.open("db/images/property_12.jpg"), filename: property.name)
+
   amenity_set = Set.new
   ((10..(amenities_data.length() - 1)).to_a.sample).times do
     amenity = Amenity.all.sample

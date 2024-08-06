@@ -76,5 +76,7 @@ gem 'money-rails', '~> 1.12'
 
 gem 'mini_magick'
 
+gem 'swiper-rails', '~> 1.0', '>= 1.0.2'
+
 
 

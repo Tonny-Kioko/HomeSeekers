@@ -3,17 +3,18 @@ import flatpickr from "flatpickr";
 
 export default class extends Controller {
   static targets = ["baseFare", "checkin", "checkout", "numberOfNights", "serviceFee", "totalAmount"]
+  static values = { blockedDates: Array, perNightPrice: Number };
 
   SERVICE_FEE_PERCENTAGE  = 0.18;
 
-  disableDates = [];
+  disabledDates = [];
 
   connect() {
     this.formatBlockedDates();
 
     flatpickr(this.checkinTarget, {
       minDate: new Date().fp_incr(1),
-      disable: this.disableDates,
+      disabled: this.disabledDates,
       onChange: (selectedDates, dateStr, instance) => {
         this.triggerCheckoutDatePicker(selectedDates);
       },
@@ -25,7 +26,7 @@ export default class extends Controller {
   triggerCheckoutDatePicker(selectedDates){
     flatpickr(this.checkoutTarget, {
       minDate: new Date(selectedDates).fp_incr(1),
-      disable: this.disableDates,
+      disabled: this.disabledDates,
       onChange: (selectedDates, dateStr, instance) => {
         this.updateDetails();
       },
@@ -35,15 +36,15 @@ export default class extends Controller {
   }
 
   formatBlockedDates() {
-    const blockedDates = JSON.parse(this.element.dataset.blockedDates)
-    for(let i = 0; i < blockedDates.length; i++){
-      const dates = blockedDates[i];
-      this.disableDates.push(
-        {
+    if (this.hasBlockedDatesValue) {
+      const blockedDates = this.blockedDatesValue;
+      for(let i = 0; i < blockedDates.length; i++){
+        const dates = blockedDates[i];
+        this.disabledDates.push({
           from: dates[0], // checkin-date
           to: dates[1], // checkout-date
-        }
-      )
+        });
+      }
     }
   }
 
@@ -77,17 +78,30 @@ export default class extends Controller {
     return parseFloat((baseFare + serviceFee).toFixed(2));
   }
 
-  reserveProperty(e){
+  reserveProperty(e) {
     e.preventDefault();
 
     const paramsData = {
       checkin_date: this.checkinTarget.value,
       checkout_date: this.checkoutTarget.value,
-    }
-    const paramsURL = (new URLSearchParams(paramsData)).toString
+    };
+    const paramsURL = new URLSearchParams(paramsData).toString();
 
-    const baseURL = e.target.dataset.reservePropertyUrl
+    const baseURL = e.target.dataset.reservePropertyUrl;
 
-    Turbo.visit('${baseURL}?${paramsURL}')
+    Turbo.visit(`${baseURL}?${paramsURL}`);
   }
 }
+
+
+
+// import { Controller } from "@hotwired/stimulus"
+
+// export default class extends Controller {
+//   connect() {
+//     console.log("Booking controller connected");
+
+//   }
+
+//   // rest of your code...
+// }
