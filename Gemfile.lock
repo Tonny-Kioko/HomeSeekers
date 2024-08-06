@@ -243,6 +243,8 @@ GEM
       railties (>= 6.0.0)
     stringio (3.1.1)
     strscan (3.1.0)
+    swiper-rails (1.0.2)
+      rails (>= 3.1)
     tailwindcss-rails (2.6.1-x64-mingw-ucrt)
       railties (>= 7.0.0)
     tailwindcss-rails (2.6.1-x86_64-linux)
@@ -294,6 +296,7 @@ DEPENDENCIES
   selenium-webdriver
   sprockets-rails
   stimulus-rails
+  swiper-rails (~> 1.0, >= 1.0.2)
   tailwindcss-rails (~> 2.6)
   turbo-rails
   tzinfo-data
