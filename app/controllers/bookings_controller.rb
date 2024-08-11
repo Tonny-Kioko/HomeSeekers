@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :authenticate_user!
   def new
     @checkin_date = params[:checkin_date]
     @checkout_date = params[:checkout_date]

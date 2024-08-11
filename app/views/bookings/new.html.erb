@@ -15,10 +15,64 @@
           </div>
         </div>
 
-        <div class="mt-12 border-t border-gray-300 pt-12">
-          <h3 class="text-2xl font-medium text-gray-900">Pay with</h3>
+        <div data-controller="payment" class="mt-12 border-t border-gray-300 pt-12">
+          <h3 class="text-2xl font-medium text-gray-900">Pay with:</h3>
+
+          <div class="flex justify-around mt-4">
+            <label class="flex items-center cursor-pointer">
+              <input type="radio" name="payment_method" value="stripe" class="mr-2" data-action="change->payment#togglePaymentOption">
+              <span class="font-medium">Credit Card</span>
+            </label>
+            <label class="flex items-center cursor-pointer">
+              <input type="radio" name="payment_method" value="mobile_money" class="mr-2" data-action="change->payment#togglePaymentOption">
+              <span class="font-medium">Mobile Money</span>
+            </label>
+          </div>
+
+          <div id="stripe-form" class="mt-6 hidden">
+            <%= form_with url: booking_payments_path(
+            property_id: @property.id,
+            user_id: current_user.id,
+            checkin_date: @checkin_date,
+            checkout_date: @checkout_date,
+            base_fare: @base_fare,
+            service_fee: @service_fee,
+            total_amount: @total_amount
+          ), method: :post do |form| %>
+            <%= form.submit "Confirm and pay", class:"rounded-md bg-primary px-3.5 py-2.5 text-sm font-semibold text-white text-lg shadow-sm hover:bg-primary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" %>
+          <% end %>
+          </div>
+
+          <div id="mobile-money-form" class="mt-6 hidden" data-payment-target="mobileMoneyForm">
+            <label for="country-code" class="block text-sm font-medium text-gray-700">Country Code</label>
+            <select id="country-code" name="country_code" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2">
+              <option value="+254">+254 (Kenya)</option>
+              <option value="+1">+1 (USA)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+233">+233 (Ghana)</option>
+
+              <!-- Add more country codes as needed -->
+            </select>
+
+            <label for="mobile-number" class="block text-sm font-medium text-gray-700 mt-4">Mobile Number</label>
+            <input type="text" id="mobile-number" name="mobile_number" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2" placeholder="Enter your mobile number">
+
+            <input type="submit" name="commit" value="Submit payment" data-disable-with="Submit payment">
+          </div>
 
         </div>
+
+
+        <%
+=begin%>
+ <div class="mt-12 border-t border-gray-300 pt-12">
+          <h3 class="text-2xl font-medium text-gray-900">Pay with: </h3>
+
+          <%= stripe_elements_tag submit_path: root_path %>
+
+        </div>
+<%
+=end%>
 
         <div class="mt-12 border-t border-gray-300 pt-12">
           <h3 class="text-2xl font-medium text-gray-900">Ground rules</h3>

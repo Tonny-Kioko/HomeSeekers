@@ -1,0 +1,63 @@
+#stripe-form {
+  margin-top: 24px;
+  font-family: inherit;
+
+  label {
+    font-family: inherit;
+  }
+
+  #card-element {
+    border: 1px solid gray;
+    border-radius: 8px;
+    margin-top:8px;
+  }
+
+  input[type="submit"] {
+    background-color: rgb(255, 90, 95);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 8px;
+    margin-top: 24px;
+    font-size: 16px;
+    font-weight: medium;
+  }
+}
+
+
+/* #mobile-money-form select,
+#mobile-money-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+} */
+
+#mobile-money-form select,
+#mobile-money-form {
+  margin-top: 24px;
+  font-family: inherit;
+
+  label {
+    font-family: inherit;
+  }
+  
+  input[type="text"]{
+    font-family: inherit;
+    font-weight: medium;
+  }
+
+
+
+  input[type="submit"] {
+    background-color: rgb(255, 90, 95);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 8px;
+    margin-top: 24px;
+    font-size: 16px;
+    font-weight: medium;
+  }
+
+
+}
