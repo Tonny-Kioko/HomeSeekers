@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_24_093043) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_11_082741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,6 +63,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_093043) do
   create_table "homes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "reservation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "base_fare_cents"
+    t.string "base_fare_currency"
+    t.integer "service_fee_cents"
+    t.string "service_fee_currency"
+    t.integer "total_amount_cents"
+    t.string "total_amount_currency"
+    t.index ["reservation_id"], name: "index_payments_on_reservation_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -139,6 +152,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_093043) do
     t.string "city"
     t.string "state"
     t.string "country"
+    t.string "stripe_customer_id"
+    t.integer "phone_number"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -155,6 +170,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_24_093043) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "payments", "reservations"
   add_foreign_key "property_amenities", "amenities"
   add_foreign_key "property_amenities", "properties"
   add_foreign_key "reservations", "properties"

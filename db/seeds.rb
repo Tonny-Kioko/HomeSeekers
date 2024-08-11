@@ -67,7 +67,8 @@ user = User.create!({
     address_2: Faker::Address.street_name,
     city: Faker::Address.city,
     state: Faker::Address.state,
-    country: Faker::Address.country
+    country: Faker::Address.country,
+    phone_number: Faker::PhoneNumber.phone_number_with_country_code
 
 })
 user.picture.attach(io: pictures[0], filename: user.name)
