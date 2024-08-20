@@ -78,3 +78,16 @@ export default class extends Controller {
     });
   }
 }
+
+
+// import { Controller } from "@hotwired/stimulus"
+// import {enter, leave, toggle} from 'el-transition'
+
+// export default class extends Controller {
+//   connect() {
+//     console.log("Wishlist controller connected");
+
+//   }
+
+//   // rest of your code...
+// }
