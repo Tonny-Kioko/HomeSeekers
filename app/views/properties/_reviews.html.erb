@@ -163,9 +163,9 @@
         <% property.reviews.limit(6).each do |review| %>
           <div class="flex flex-col">
             <div class="flex items-center">
-              <%= image_tag review.user.picture, alt: review.user.name, class: "h-12 w-12 rounded-full" %>
+              <%= image_tag review.user.picture, alt: review.profile.name, class: "h-12 w-12 rounded-full" %>
               <div>
-                <p class="text-sm font-medium text-gray-900 ms-4"><%= review.user.name%></p>
+                <p class="text-sm font-medium text-gray-900 ms-4"><%= review.profile.name%></p>
                 <p class="text-sm font-light text-gray-900 ms-4"><%= review.user.city%>, <%= review.user.country%> </p>
               </div>
             </div>

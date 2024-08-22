@@ -12,12 +12,21 @@ class User < ApplicationRecord
   validates :state, presence: true, length: { maximum: 500 }
   validates :country, presence: true, length: { maximum: 500 }
 
-  has_one_attached :picture
+  has_one_attached :picture, dependent: :destroy
+
+  has_one :profile
 
   has_many :wishlists, dependent: :destroy
   has_many :wishlisted_properties, through: :wishlists, source: :property, dependent: :destroy
   has_many :reservations, dependent: :destroy
   has_many :reserved_properties, through: :reservations, source: :property, dependent: :destroy
-    has_many :payments, through: :reservations, dependent: :destroy
+  has_many :payments, through: :reservations, dependent: :destroy
+
+  after_create :new_profile
+
+  def new_profile
+    self.profile = Profile.new
+    save!
+  end
 
 end
