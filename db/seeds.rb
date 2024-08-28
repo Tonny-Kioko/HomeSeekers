@@ -71,7 +71,7 @@ profile = Profile.create!({
   city: Faker::Address.city,
   state: Faker::Address.state,
   country: Faker::Address.country,
-  phone_number: Faker::PhoneNumber.phone_number_with_country_code,
+#  phone_number: Faker::PhoneNumber.phone_number_with_country_code,
   user_id: user.id
 })
 
@@ -93,7 +93,7 @@ profile.picture.attach(io: pictures[0], filename: profile.name)
       city: Faker::Address.city,
       state: Faker::Address.state,
       country: Faker::Address.country,
-      phone_number: Faker::PhoneNumber.phone_number_with_country_code,
+#      phone_number: Faker::PhoneNumber.phone_number_with_country_code,
       user_id: random_user.id
     }
   )
