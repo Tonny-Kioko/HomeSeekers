@@ -23,7 +23,9 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [:index, :edit, :update]
 
-  resources :reservations, only: [:index]
+  resources :reservations, only: [:index] do
+    resources :reviews, only: [:new, :create]
+  end
 
 
 
