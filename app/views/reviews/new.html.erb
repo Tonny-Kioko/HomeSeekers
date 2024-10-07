@@ -26,6 +26,29 @@
         </div>
       </div>
 
+      <div class="max-w-96">
+        <%= form_with url: reservation_reviews_path() do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :property_id, value: @reservation.property_id %>
+
+          <div class="flex flex-col py-4">
+            <%= f.label :content, class:'block text-sm font-medium leading-6 text-gray-900' %>
+            <%= f.text_area :content, class:'block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6' %>
+          </div>
+
+          <div data-controller="rating">
+            <%= render :partial => 'reviews/rating_item', :locals => {:f => f, category_rating: "cleanliness_rating"} %>
+            <%= render :partial => 'reviews/rating_item', :locals => {:f => f, category_rating: "accuracy_rating"} %>
+            <%= render :partial => 'reviews/rating_item', :locals => {:f => f, category_rating: "checkin_rating"} %>
+            <%= render :partial => 'reviews/rating_item', :locals => {:f => f, category_rating: "communication_rating"} %>
+            <%= render :partial => 'reviews/rating_item', :locals => {:f => f, category_rating: "location_rating"} %>
+            <%= render :partial => 'reviews/rating_item', :locals => {:f => f, category_rating: "value_rating"} %>
+          </div>
+
+          <%= f.submit "Submit Review", class:"cursor-pointer mt-4 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+        <% end %>
+      </div>
+
     </div>
   </main>
 </div>

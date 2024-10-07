@@ -64,7 +64,7 @@ user = User.create!({
   password: 'pass123'
 })
 
-profile = Profile.create!({
+user.profile.update!({
   name: Faker::Lorem.unique.sentence(word_count: 3),
   address_1: Faker::Address.street_address,
   address_2: Faker::Address.street_name,
@@ -75,7 +75,7 @@ profile = Profile.create!({
   user_id: user.id
 })
 
-profile.picture.attach(io: pictures[0], filename: profile.name)
+user.profile.picture.attach(io: pictures[0], filename: user.profile.name)
 
 19.times do |i|
   random_user = User.create!(
@@ -85,7 +85,7 @@ profile.picture.attach(io: pictures[0], filename: profile.name)
     }
   )
 
-  random_profile = Profile.create!(
+  random_user.profile.update!(
     {
       name: Faker::Lorem.unique.sentence(word_count: 3),
       address_1: Faker::Address.street_address,
@@ -98,7 +98,7 @@ profile.picture.attach(io: pictures[0], filename: profile.name)
     }
   )
 
-  random_profile.picture.attach(io: pictures[i + 1], filename: random_profile.name)
+  random_user.profile.picture.attach(io: pictures[i + 1], filename: random_user.profile.name)
 end
 
 6.times do |i|
