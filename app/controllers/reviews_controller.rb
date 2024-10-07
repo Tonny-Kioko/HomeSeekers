@@ -1,25 +1,30 @@
-class ReviewsContoller < ApplicationController
-  before_action :authenticate_user!
-  def new
 
-    @reservation = Reservation.find(params[:reservation_id])
-  end
+class ReviewsController < ApplicationController
+  before_action :set_reservation, only: [:new, :create]
 
   def create
-    @review = Review.new(review_params)
+    data_params = review_params.merge(
+      property_id: @reservation.property_id,
+      reservation_id: @reservation.id
+    )
+    @review = current_user.reviews.new(data_params)
 
     if @review.save
-      redirect_to root_path, notice: "Review Added Successfully"
+      redirect_to root_path, notice: 'Review added successfully to the Property'
     else
-      redirect_back fallback_location: root_path, notice: "Review Add Failed"
+      redirect_back fallback_location: root_path, alert: 'Failed to add review, Check again later'
     end
   end
 
   private
-  def reviews_params
+
+  def set_reservation
+    @reservation = Reservation.find(params[:reservation_id])
+  end
+
+  def review_params
     params.permit(
-      :user_id,
-      :property_id,
+
       :content,
       :cleanliness_rating,
       :accuracy_rating,
@@ -29,6 +34,4 @@ class ReviewsContoller < ApplicationController
       :value_rating
     )
   end
-
-
 end
