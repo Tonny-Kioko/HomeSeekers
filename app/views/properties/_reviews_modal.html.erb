@@ -29,7 +29,7 @@
           <h4 class="text-sm font-medium">Overall rating</h4>
           <div class="mt-2">
             <h3 class="sr-only">Review data</h3>
-
+            <% if @property.reviews_count > 0 %>
             <dl class="space-y-0">
               <% 5.times do |index| %>
                 <div class="flex items-center text-xs">
@@ -138,6 +138,9 @@
           <p class="text-xs font-medium"><%= content_params[:property].average_value_rating().round(1) %></p>
         </div>
       </div>
+      <% else %>
+              <p>New Listing</p>
+      <% end %>
     </section>
 
     <!-- Review items-->

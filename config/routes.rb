@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   resource :profile, only: [:update, :edit]
 
+  resource :password, only: [:update, :edit]
+
   resources :reservations, only: [:index] do
     resources :reviews, only: [:new, :create]
   end

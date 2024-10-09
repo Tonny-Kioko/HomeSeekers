@@ -80,7 +80,9 @@ gem 'mini_magick'
 gem 'swiper-rails', '~> 1.0', '>= 1.0.2'
 
 gem 'stripe-rails'
+
 gem 'dotenv-rails'
 
+gem 'country_select', '~> 8.0'
 
 
