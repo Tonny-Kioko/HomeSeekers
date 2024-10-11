@@ -1,11 +1,15 @@
 <header class="bg-white border-b-2 border-gray-200" data-controller="header">
+
   <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:px-8">
     <div class="relative flex h-20 justify-between">
       <div class="relative z-10 flex px-2 lg:px-0">
         <div class="flex flex-shrink-0 items-center">
-
+          <%= link_to root_path do %>
+            <%= image_tag("airbnblogo.svg", class: "h-8 w-auto", alt: "Airbnb Logo") %>
+          <% end %>
         </div>
       </div>
+
       <div class="relative z-0 flex flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
         <div class="w-full sm:max-w-xs">
           <label for="search" class="sr-only">Search</label>
@@ -74,6 +78,8 @@
             <% if user_signed_in? %>
               <%= link_to "Profile", edit_profile_path, class:"block px-4 py-2 text-sm text-gray-700", role:"menuitem", tabindex:"-1" %>
               <%= link_to "Wishlist", wishlists_path, class:"block px-4 py-2 text-sm text-gray-700", role:"menuitem", tabindex:"-1" %>
+              <%= link_to "Host Dashboard", owner_dashboard_index_path, class:"block px-4 py-2 text-sm text-gray-700", role:"menuitem", tabindex:"-1" %>
+              
               <%= link_to "Log out", destroy_user_session_path, data: { "turbo-method": :delete }, class:"block px-4 py-2 text-sm text-gray-700", role:"menuitem", tabindex:"-1" %>
             <% else %>
               <%= link_to "Log in", new_user_session_path, class:'js-login block px-4 py-2 text-sm text-gray-700', role:"menuitem", tabindex:"-1" %>

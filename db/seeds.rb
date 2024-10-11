@@ -115,7 +115,8 @@ end
     bedroom_count: (2..5).to_a.sample,
     bed_count: (1..5).to_a.sample,
     guest_count: (1..10).to_a.sample,
-    bathroom_count: (1..5).to_a.sample
+    bathroom_count: (1..5).to_a.sample,
+    user_id: User.all.sample.id
   })
 
   property.images.attach(io: File.open("db/images/property_#{i + 1}.jpg"), filename: property.name)

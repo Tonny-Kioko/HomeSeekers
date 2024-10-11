@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-
+  namespace :owner do
+    resources :dashboard, only: [:index]
+    resources :properties
+    resources :reservations, only: [:index]
+  end
 
 
 

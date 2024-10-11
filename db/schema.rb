@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_09_051252) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_11_084623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_09_051252) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "icon"
+    t.index ["name"], name: "index_amenities_on_name", unique: true
   end
 
   create_table "homes", force: :cascade do |t|
@@ -110,6 +111,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_09_051252) do
     t.integer "bedroom_count", default: 0
     t.integer "bathroom_count", default: 0
     t.integer "bed_count", default: 0
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
   create_table "property_amenities", force: :cascade do |t|
@@ -181,6 +184,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_09_051252) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "payments", "reservations"
   add_foreign_key "profiles", "users"
+  add_foreign_key "properties", "users"
   add_foreign_key "property_amenities", "amenities"
   add_foreign_key "property_amenities", "properties"
   add_foreign_key "reservations", "properties"
