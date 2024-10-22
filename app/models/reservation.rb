@@ -2,7 +2,8 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :property
 
-  has_one :payment, class_name: "payment", foreign_key: "payment_id"
+  has_one :payment, class_name: "payment", foreign_key: "payment_id", dependent: :destroy
+  has_one :review, dependent: :destroy
 
   validates :checkin_date, presence: true
   validates :checkout_date, presence: true

@@ -18,6 +18,16 @@
           <% end %>
         </div>
 
+        <%= form_with model: @property, url: add_images_owner_property_path, class:'mt-6' do |f| %>
+          <div>
+            <div class="">
+              <%= f.label 'Add Images', class:'block text-base font-semibold leading-7 text-gray-900 mb-2' %>
+              <%= f.file_field :images, class:'font-medum', multiple: true %>
+              <%= f.submit "Upload Images", class:"cursor-pointer mt-2 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 py-2 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+            </div>
+          </div>
+        <% end %>
+
       </div>
     </div>
 
@@ -38,12 +48,12 @@
 
           <div class="col-span-full">
             <%= f.label :headline, class:'block text-sm font-medium leading-6 text-gray-900' %>
-            <%= f.text_field :headline, class: 'mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' %>
+            <%= f.rich_text_area :headline, class: 'mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' %>
           </div>
 
           <div class="col-span-full">
             <%= f.label :description, class:'block text-sm font-medium leading-6 text-gray-900' %>
-            <%= f.text_field :description, class: 'mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' %>
+            <%= f.rich_text_area :description, class: 'mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' %>
           </div>
 
           <div class="col-span-full">
@@ -67,13 +77,13 @@
           </div>
 
           <div class="sm:col-span-2">
-            <%= f.label :country, class:'block text-sm font-medium leading-6 text-gray-900' %>
-            <%= f.country_select :country_code, class: 'mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' %>
+            <%= f.label :country, class: 'block text-sm font-medium leading-6 text-gray-900' %>
+            <%= f.country_select :country, {}, { class: 'mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6' } %>
           </div>
 
-          <div class="col-span-full">
-            <%= f.submit "Save", class:"cursor-pointer mt-2 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
-          </div>
+
+          <%= f.submit "Save", class:"cursor-pointer mt-2 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
+
         <% end %>
       </div>
     </div>
@@ -97,6 +107,13 @@
             <%= f.submit "Save", class:"cursor-pointer mt-2 flex items-center justify-center rounded-md border border-transparent bg-primary px-8 py-3 text-base font-medium text-white hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" %>
           </div>
         <% end %>
+      </div>
+    </div>
+    <div class="px-8 py-8 border border-red-500 rounded-md lg:flex-auto my-8">
+      <div>
+        <h2 class="text-2xl font-semibold leading-7 text-red-500">Delete Listing</h2>
+        <p class="my-2">Are you sure you want to delete this listing?</p>
+         <%= button_to 'Delete', owner_property_path, method: :delete, class:"mt-4 rounded p-1 bg-red-500 hover:bg-red-700 text-white px-8 py-2" %>
       </div>
     </div>
   </main>
